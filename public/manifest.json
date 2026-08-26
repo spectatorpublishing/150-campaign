@@ -1,0 +1,9 @@
+{
+  "short_name": "Spec 150",
+  "name": "Secure the Spec | Columbia Daily Spectator",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0d0d0d",
+  "background_color": "#ffffff"
+}
