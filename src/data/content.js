@@ -1,4 +1,4 @@
-export const DONATE_URL = 'https://give.columbia.edu/'; // TODO: replace with actual donation link
+export const DONATE_URL = '/donate';
 export const FAQ_ANCHOR = '#faq';
 
 export const mission = {

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { size } from '../device';
 import { DONATE_URL } from '../data/content';
 
@@ -17,7 +18,7 @@ const HeroSection = styled.section`
   position: relative;
 
   @media (max-width: ${size.mobile}) {
-    padding: 2rem 1.5rem 15vh;
+    padding: 2rem 1.5rem 28vh;
   }
 `;
 
@@ -34,7 +35,7 @@ const Subtitle = styled.p`
   font-family: 'Open Sans', sans-serif;
   font-size: clamp(1.1rem, 2.5vw, 1.5rem);
   font-weight: 400;
-  color: #7ecff4;
+  color: #ffffff;
   line-height: 1.5;
   max-width: 520px;
   margin: 0 0 2.5rem;
@@ -66,7 +67,7 @@ const OutlineButton = styled.a`
   }
 `;
 
-const FilledButton = styled.a`
+const FilledButton = styled(Link)`
   display: inline-block;
   padding: 0.75rem 2rem;
   background-color: #7ecff4;
@@ -119,7 +120,7 @@ const Hero = () => (
       A campaign for the next 150 years of independent student journalism.
     </Subtitle>
     <ButtonRow>
-      <FilledButton href={DONATE_URL} target="_blank" rel="noopener noreferrer">
+      <FilledButton to={DONATE_URL}>
         Donate Now
       </FilledButton>
     </ButtonRow>

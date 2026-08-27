@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { size } from '../device';
 import { goal, goals, DONATE_URL } from '../data/content';
 
@@ -8,13 +9,16 @@ const Wrapper = styled.div`
 `;
 
 const IntroSection = styled.section`
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 0 2rem 2rem;
+  padding: 3.5rem 2rem 2rem;
 
   @media (max-width: ${size.mobile}) {
-    padding: 0 1.5rem 1.5rem;
+    padding: 2.5rem 1.5rem 1.5rem;
   }
+`;
+
+const Inner = styled.div`
+  max-width: 760px;
+  margin: 0 auto;
 `;
 
 const Heading = styled.h2`
@@ -35,6 +39,8 @@ const Body = styled.p`
   line-height: 1.75;
   color: #222;
   margin: 0 0 1.25rem;
+
+  @media (max-width: ${size.mobile}) { font-size: 0.95rem; }
 `;
 
 const Callout = styled.blockquote`
@@ -49,8 +55,6 @@ const Callout = styled.blockquote`
 `;
 
 const GoalItem = styled.section`
-  max-width: 760px;
-  margin: 0 auto;
   padding: 2rem 2rem;
 
   @media (max-width: ${size.mobile}) {
@@ -90,9 +94,9 @@ const Highlight = styled.p`
   color: #222;
   margin: 0 0 1.25rem;
 
-  strong {
-    font-weight: 600;
-  }
+  strong { font-weight: 600; }
+
+  @media (max-width: ${size.mobile}) { font-size: 0.95rem; }
 `;
 
 const Tagline = styled.p`
@@ -103,9 +107,9 @@ const Tagline = styled.p`
   color: #1c1c1c;
   margin: 0 0 1.25rem;
 
-  em {
-    font-style: italic;
-  }
+  em { font-style: italic; }
+
+  @media (max-width: ${size.mobile}) { font-size: 0.95rem; }
 `;
 
 const GoalIntro = styled.p`
@@ -114,6 +118,8 @@ const GoalIntro = styled.p`
   line-height: 1.75;
   color: #222;
   margin: 0 0 1.5rem;
+
+  @media (max-width: ${size.mobile}) { font-size: 0.95rem; }
 `;
 
 const SubSection = styled.div`
@@ -126,6 +132,8 @@ const SubHeading = styled.h4`
   font-weight: 700;
   color: #1c1c1c;
   margin: 0 0 0.4rem;
+
+  @media (max-width: ${size.mobile}) { font-size: 0.95rem; }
 `;
 
 const SubBody = styled.p`
@@ -134,6 +142,8 @@ const SubBody = styled.p`
   line-height: 1.75;
   color: #222;
   margin: 0;
+
+  @media (max-width: ${size.mobile}) { font-size: 0.95rem; }
 `;
 
 const DonateBar = styled.div`
@@ -149,7 +159,7 @@ const DonateHeading = styled.p`
   margin: 0 0 1.5rem;
 `;
 
-const DonateButton = styled.a`
+const DonateButton = styled(Link)`
   display: inline-block;
   padding: 0.85rem 2.5rem;
   background-color: #7ecff4;
@@ -170,13 +180,16 @@ const DonateButton = styled.a`
 const GoalSection = () => (
   <Wrapper id="goal">
     <IntroSection>
-      <Heading>{goal.heading}</Heading>
-      <Body>{goal.intro}</Body>
-      <Callout>{goal.callout}</Callout>
+      <Inner>
+        <Heading>{goal.heading}</Heading>
+        <Body>{goal.intro}</Body>
+        <Callout>{goal.callout}</Callout>
+      </Inner>
     </IntroSection>
 
     {goals.map((g) => (
       <GoalItem key={g.id} id={g.id}>
+        <Inner>
         {g.subsections ? (
           <>
             <GoalHeading>{g.title}</GoalHeading>
@@ -203,12 +216,13 @@ const GoalSection = () => (
             ))}
           </>
         )}
+        </Inner>
       </GoalItem>
     ))}
 
     <DonateBar>
       <DonateHeading>Help secure Spectator's next 150 years.</DonateHeading>
-      <DonateButton href={DONATE_URL} target="_blank" rel="noopener noreferrer">
+      <DonateButton to={DONATE_URL}>
         Donate Now
       </DonateButton>
     </DonateBar>

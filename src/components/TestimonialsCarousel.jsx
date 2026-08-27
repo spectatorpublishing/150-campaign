@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { size } from '../device';
 import { testimonials } from '../data/content';
 
 const Section = styled.section`
-  background-color: #faf8f5;
+  background-color: #f2efe9;
   padding: 4rem 0 3rem;
   overflow: hidden;
 `;
@@ -17,11 +17,14 @@ const Inner = styled.div`
 
 const Heading = styled.h2`
   font-family: 'Bitter', serif;
-  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-size: clamp(1.2rem, 3vw, 2rem);
   font-weight: 700;
   color: #1c1c1c;
   margin: 0 0 2rem;
-  white-space: nowrap;
+
+  @media (max-width: ${size.mobile}) {
+    white-space: normal;
+  }
 
   em {
     font-style: italic;
@@ -55,7 +58,7 @@ const ArrowButton = styled.button`
   @media (max-width: ${size.mobile}) {
     top: 50%;
     transform: translateY(-50%);
-    ${({ side }) => side === 'left' ? 'right: auto; left: 0.25rem;' : 'left: auto; right: 0.25rem;'}
+    ${({ side }) => side === 'left' ? 'right: auto; left: 0.6rem;' : 'left: auto; right: 0.6rem;'}
   }
 `;
 
@@ -65,6 +68,17 @@ const CardInner = styled.div`
   height: 240px;
   overflow: hidden;
   padding: 0 1rem;
+  animation: ${({ dir }) => dir === 'left' ? 'slideFromLeft' : 'slideFromRight'} 0.35s ease;
+
+  @keyframes slideFromRight {
+    from { transform: translateX(60px); opacity: 0; }
+    to   { transform: translateX(0);    opacity: 1; }
+  }
+
+  @keyframes slideFromLeft {
+    from { transform: translateX(-60px); opacity: 0; }
+    to   { transform: translateX(0);     opacity: 1; }
+  }
 
   @media (max-width: ${size.tablet}) {
     height: 300px;
@@ -72,7 +86,7 @@ const CardInner = styled.div`
 
   @media (max-width: ${size.mobile}) {
     height: 260px;
-    padding: 0 1.5rem;
+    padding: 0 2.25rem;
   }
 `;
 
@@ -128,7 +142,7 @@ const Dot = styled.button`
   border: none;
   cursor: pointer;
   padding: 0;
-  background-color: ${({ active }) => (active ? '#1c1c1c' : 'rgba(28,28,28,0.2)')};
+  background-color: ${({ active }) => (active ? '#7ecff4' : 'rgba(28,28,28,0.2)')};
   transition: background-color 0.2s;
 `;
 
@@ -137,9 +151,20 @@ const renderSegments = (segments) =>
 
 const TestimonialsCarousel = () => {
   const [index, setIndex] = useState(0);
+  const [dir, setDir] = useState('right');
+  const touchStartX = useRef(null);
 
-  const prev = () => setIndex(i => Math.max(0, i - 1));
-  const next = () => setIndex(i => Math.min(testimonials.length - 1, i + 1));
+  const prev = () => { setDir('left');  setIndex(i => Math.max(0, i - 1)); };
+  const next = () => { setDir('right'); setIndex(i => Math.min(testimonials.length - 1, i + 1)); };
+
+  const onTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+  const onTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    if (dx > 40) prev();
+    else if (dx < -40) next();
+    touchStartX.current = null;
+  };
 
   const t = testimonials[index];
 
@@ -151,14 +176,14 @@ const TestimonialsCarousel = () => {
         </Heading>
       </Inner>
 
-      <CarouselRow>
+      <CarouselRow onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         <ArrowButton side="left" onClick={prev} disabled={index === 0} aria-label="Previous">
           <svg width="18" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="15 18 9 12 15 6" />
           </svg>
         </ArrowButton>
 
-        <CardInner>
+        <CardInner key={index} dir={dir}>
           <Quote>{renderSegments(t.segments)}</Quote>
           <Attribution>
             <Name>—{t.name}</Name>

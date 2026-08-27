@@ -23,6 +23,10 @@ const Heading = styled.h2`
   font-weight: 700;
   color: #1c1c1c;
   margin: 0 0 2.5rem;
+  text-decoration: underline;
+  text-decoration-color: #7ecff4;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.2em;
 `;
 
 const Item = styled.div`
@@ -79,7 +83,7 @@ const FAQSection = () => {
   return (
     <Section id="faq">
       <Inner>
-        <Heading>FAQ</Heading>
+        <Heading>FAQs</Heading>
         {faq.map((item, i) => (
           <Item key={i}>
             <Question onClick={() => toggle(i)}>

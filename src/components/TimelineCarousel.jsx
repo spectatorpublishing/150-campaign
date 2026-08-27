@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { timeline } from '../data/content';
 
@@ -140,13 +140,14 @@ const Dot = styled.button`
   border: none;
   cursor: pointer;
   padding: 0;
-  background-color: ${({ active }) => (active ? '#1c1c1c' : 'rgba(28,28,28,0.2)')};
+  background-color: ${({ active }) => (active ? '#7ecff4' : 'rgba(28,28,28,0.2)')};
   transition: background-color 0.2s;
 `;
 
 const TimelineCarousel = () => {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= MOBILE_BREAKPOINT);
   const [page, setPage] = useState(0);
+  const touchStartX = useRef(null);
 
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth <= MOBILE_BREAKPOINT);
@@ -166,6 +167,15 @@ const TimelineCarousel = () => {
   const prev = () => setPage(p => Math.max(0, p - 1));
   const next = () => setPage(p => Math.min(numPages - 1, p + 1));
 
+  const onTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+  const onTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    if (dx > 40) prev();
+    else if (dx < -40) next();
+    touchStartX.current = null;
+  };
+
   return (
     <Section id="timeline">
       <Inner>
@@ -179,7 +189,7 @@ const TimelineCarousel = () => {
           </svg>
         </ArrowButton>
 
-        <TrackOuter>
+        <TrackOuter onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
           <Track style={{ transform: `translateX(-${startIndex * itemWidth}%)` }}>
             {timeline.map((item) => (
               <SlideItem key={item.year} style={{ width: `${itemWidth}%` }}>

@@ -4,14 +4,17 @@ import { size } from '../device';
 import { mission } from '../data/content';
 
 const Section = styled.section`
-  background-color: #faf8f5;
+  background-color: #f2efe9;
   padding: 5rem 2rem;
-  max-width: 760px;
-  margin: 0 auto;
 
   @media (max-width: ${size.mobile}) {
     padding: 3rem 1.5rem;
   }
+`;
+
+const Inner = styled.div`
+  max-width: 760px;
+  margin: 0 auto;
 `;
 
 const Heading = styled.h2`
@@ -36,14 +39,20 @@ const Body = styled.p`
   &:last-child {
     margin-bottom: 0;
   }
+
+  @media (max-width: ${size.mobile}) {
+    font-size: 0.95rem;
+  }
 `;
 
 const MissionSection = () => (
   <Section id="mission">
-    <Heading>{mission.heading}</Heading>
-    {mission.paragraphs.map((p, i) => (
-      <Body key={i}>{p}</Body>
-    ))}
+    <Inner>
+      <Heading>{mission.heading}</Heading>
+      {mission.paragraphs.map((p, i) => (
+        <Body key={i}>{p}</Body>
+      ))}
+    </Inner>
   </Section>
 );
 
