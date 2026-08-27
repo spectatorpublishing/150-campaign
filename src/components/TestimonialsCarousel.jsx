@@ -51,6 +51,12 @@ const ArrowButton = styled.button`
   &:hover:not(:disabled) {
     color: #7ecff4;
   }
+
+  @media (max-width: ${size.mobile}) {
+    top: 50%;
+    transform: translateY(-50%);
+    ${({ side }) => side === 'left' ? 'right: auto; left: 0.25rem;' : 'left: auto; right: 0.25rem;'}
+  }
 `;
 
 const CardInner = styled.div`
@@ -58,13 +64,15 @@ const CardInner = styled.div`
   flex-direction: column;
   height: 240px;
   overflow: hidden;
+  padding: 0 1rem;
 
   @media (max-width: ${size.tablet}) {
     height: 300px;
   }
 
   @media (max-width: ${size.mobile}) {
-    height: 360px;
+    height: 260px;
+    padding: 0 1.5rem;
   }
 `;
 
@@ -102,7 +110,6 @@ const JobTitle = styled.div`
   font-family: 'Open Sans', sans-serif;
   font-size: 0.85rem;
   font-weight: 400;
-  font-style: italic;
   color: #555;
   margin-top: 0.15rem;
 `;
@@ -140,7 +147,7 @@ const TestimonialsCarousel = () => {
     <Section id="testimonials">
       <Inner>
         <Heading>
-          Why I'm Supporting the <em>Spectator</em>
+          Why I'm Supporting the Spectator
         </Heading>
       </Inner>
 

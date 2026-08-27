@@ -21,7 +21,7 @@ export const goals = [
   {
     id: 'secure-the-future',
     number: 'Goal 1',
-    title: 'Secure the Future',
+    title: '1) Secure the Future',
     body: [
       'Spectator\'s financial position is fragile. We will add $400,000 to Spectator\'s endowment—a 50 percent increase. The combined corpus will produce roughly $60,000 in income in perpetuity, backstopping nearly a third of the operating budget. That stability will let Spectator plan boldly, protect its independence, and thrive even in worsening economic conditions.',
     ],
@@ -30,11 +30,26 @@ export const goals = [
   {
     id: 'invest-in-people',
     number: 'Goal 2',
-    title: 'Invest in Our People',
-    body: [
-      'Great journalism requires great journalists. We will add $600,000 to a fund dedicated to supporting our staff—expanding stipends, creating fellowships, and ensuring every student who joins Spectator can afford to do the work.',
+    title: '2) Invest in our people',
+    intro: 'A new suite of programs will amplify this cycle of excellence.',
+    subsections: [
+      {
+        heading: 'Attract the best students, from the widest backgrounds…',
+        body: 'Spec\'s work study program will grow by $250,000, so that students of all economic backgrounds can join the newsroom. Over 25 years, these funds will help more than 600 aspiring journalists get their start.',
+      },
+      {
+        heading: '…So that they can create the strongest journalism on campus…',
+        body: 'Endowed by $100,000, a new prize will grant $3,000 every year to an outstanding student reporter—half in the fall, and half in the spring, to encourage continued in-depth coverage.',
+      },
+      {
+        heading: '…Then launch into their first jobs…',
+        body: 'A new stipend pool of $225,000 will help graduating students afford entry-level media positions. These fellowships—three at $5,000 per year—can be the difference between a career that starts and one that doesn\'t.',
+      },
+      {
+        heading: '… And return to campus to develop the next generation of Spec talent.',
+        body: 'A new speaker series, endowed at $25,000, will bring working journalists to campus for informal lunches with students every quarter.',
+      },
     ],
-    highlight: 'We will add $600,000 to support Spectator\'s staff.',
   },
 ];
 
@@ -118,6 +133,21 @@ export const testimonials = [
     name: 'Robert McCaughey',
     title: 'Historian and author of Stand, Columbia',
   },
+];
+
+export const timeline = [
+  { year: '1877', event: 'Founded as a twice-monthly publication', image: '1877' },
+  { year: '1902', event: 'Spectator becomes a daily newspaper', image: null },
+  { year: '1933', event: 'Covering campus protests against fascism', image: '1933', imageOnly: true },
+  { year: '1962', event: 'Financial independence from Columbia', image: null },
+  { year: '1968', event: 'Hamilton Hall', image: '1968', imageOnly: true },
+  { year: '1983', event: 'Co-ed at last', image: '1983', imageOnly: true },
+  { year: '1988', event: 'We Win!', image: '1988', imageOnly: true },
+  { year: '1998', event: 'columbiaspectator.com goes online', image: null },
+  { year: '2004', event: 'A new format: broadsheet and color. The Eye magazine debuts.', image: '2004' },
+  { year: '2014', event: 'Shift to digital-first publishing', image: null },
+  { year: '2024', event: 'Encampments spread across the nation', image: '2024', imageOnly: true },
+  { year: '2027', event: '150th anniversary celebration', image: null },
 ];
 
 export const faq = [

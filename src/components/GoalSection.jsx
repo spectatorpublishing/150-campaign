@@ -10,10 +10,10 @@ const Wrapper = styled.div`
 const IntroSection = styled.section`
   max-width: 760px;
   margin: 0 auto;
-  padding: 0 2rem 4rem;
+  padding: 0 2rem 2rem;
 
   @media (max-width: ${size.mobile}) {
-    padding: 0 1.5rem 3rem;
+    padding: 0 1.5rem 1.5rem;
   }
 `;
 
@@ -23,6 +23,10 @@ const Heading = styled.h2`
   font-weight: 700;
   color: #1c1c1c;
   margin: 0 0 1.25rem;
+  text-decoration: underline;
+  text-decoration-color: #7ecff4;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.2em;
 `;
 
 const Body = styled.p`
@@ -39,24 +43,18 @@ const Callout = styled.blockquote`
   font-weight: 700;
   color: #1c1c1c;
   line-height: 1.3;
-  margin: 3rem 0;
+  margin: 1.5rem 0;
   padding: 0;
   border: none;
-`;
-
-const Divider = styled.hr`
-  border: none;
-  border-top: 1px solid #e0e0e0;
-  margin: 0;
 `;
 
 const GoalItem = styled.section`
   max-width: 760px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 2rem 2rem;
 
   @media (max-width: ${size.mobile}) {
-    padding: 3rem 1.5rem;
+    padding: 1.5rem 1.5rem;
   }
 `;
 
@@ -77,6 +75,12 @@ const GoalHeading = styled.h3`
   font-weight: 700;
   color: #1c1c1c;
   margin: 0 0 1.5rem;
+  ${({ underline }) => underline && `
+    text-decoration: underline;
+    text-decoration-color: #7ecff4;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.2em;
+  `}
 `;
 
 const Highlight = styled.p`
@@ -89,6 +93,47 @@ const Highlight = styled.p`
   strong {
     font-weight: 600;
   }
+`;
+
+const Tagline = styled.p`
+  font-family: 'Merriweather', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.75;
+  color: #1c1c1c;
+  margin: 0 0 1.25rem;
+
+  em {
+    font-style: italic;
+  }
+`;
+
+const GoalIntro = styled.p`
+  font-family: 'Merriweather', serif;
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: #222;
+  margin: 0 0 1.5rem;
+`;
+
+const SubSection = styled.div`
+  margin-bottom: 1.5rem;
+`;
+
+const SubHeading = styled.h4`
+  font-family: 'Merriweather', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1c1c1c;
+  margin: 0 0 0.4rem;
+`;
+
+const SubBody = styled.p`
+  font-family: 'Merriweather', serif;
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: #222;
+  margin: 0;
 `;
 
 const DonateBar = styled.div`
@@ -111,7 +156,7 @@ const DonateButton = styled.a`
   border-radius: 100px;
   color: #1c1c1c;
   text-decoration: none;
-  font-family: 'Merriweather', serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -130,29 +175,39 @@ const GoalSection = () => (
       <Callout>{goal.callout}</Callout>
     </IntroSection>
 
-    {goals.map((g, i) => (
-      <React.Fragment key={g.id}>
-        <Divider />
-        <GoalItem id={g.id}>
-          <GoalLabel>{g.number}</GoalLabel>
-          <GoalHeading>{g.title}</GoalHeading>
-          {g.body.map((p, j) => (
-            <Highlight key={j}>
-              {p.includes(g.highlight.replace(/\*\*/g, ''))
-                ? <>
-                    {p.split(g.highlight)[0]}
-                    <strong>{g.highlight}</strong>
-                    {p.split(g.highlight)[1]}
-                  </>
-                : p}
-            </Highlight>
-          ))}
-        </GoalItem>
-      </React.Fragment>
+    {goals.map((g) => (
+      <GoalItem key={g.id} id={g.id}>
+        {g.subsections ? (
+          <>
+            <GoalHeading>{g.title}</GoalHeading>
+            <Tagline>
+              Spectator makes great journalists—and great journalists love giving back to <em>Spectator</em>.
+            </Tagline>
+            <GoalIntro>{g.intro}</GoalIntro>
+            {g.subsections.map((sub, j) => (
+              <SubSection key={j}>
+                <SubHeading>{sub.heading}</SubHeading>
+                <SubBody>{sub.body}</SubBody>
+              </SubSection>
+            ))}
+          </>
+        ) : (
+          <>
+            <GoalHeading>{g.title}</GoalHeading>
+            {g.body.map((p, j) => (
+              <Highlight key={j}>
+                {p.includes(g.highlight)
+                  ? <>{p.split(g.highlight)[0]}<strong>{g.highlight}</strong>{p.split(g.highlight)[1]}</>
+                  : p}
+              </Highlight>
+            ))}
+          </>
+        )}
+      </GoalItem>
     ))}
 
     <DonateBar>
-      <DonateHeading>Help secure the next 150 years.</DonateHeading>
+      <DonateHeading>Help secure Spectator's next 150 years.</DonateHeading>
       <DonateButton href={DONATE_URL} target="_blank" rel="noopener noreferrer">
         Donate Now
       </DonateButton>

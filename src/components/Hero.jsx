@@ -119,7 +119,6 @@ const Hero = () => (
       A campaign for the next 150 years of independent student journalism.
     </Subtitle>
     <ButtonRow>
-      <OutlineButton href="#faq">FAQ</OutlineButton>
       <FilledButton href={DONATE_URL} target="_blank" rel="noopener noreferrer">
         Donate Now
       </FilledButton>
