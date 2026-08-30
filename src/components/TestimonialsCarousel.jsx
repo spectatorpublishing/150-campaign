@@ -56,9 +56,7 @@ const ArrowButton = styled.button`
   }
 
   @media (max-width: ${size.mobile}) {
-    top: 50%;
-    transform: translateY(-50%);
-    ${({ side }) => side === 'left' ? 'right: auto; left: 0.6rem;' : 'left: auto; right: 0.6rem;'}
+    display: none;
   }
 `;
 
@@ -85,8 +83,8 @@ const CardInner = styled.div`
   }
 
   @media (max-width: ${size.mobile}) {
-    height: 260px;
-    padding: 0 2.25rem;
+    height: 290px;
+    padding: 0 0.5rem;
   }
 `;
 

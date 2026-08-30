@@ -150,6 +150,34 @@ export const timeline = [
   { year: '2027', event: '150th anniversary celebration', image: null },
 ];
 
+export const donorOpportunities = [
+  {
+    amount: '$500,000',
+    title: 'Endow the cost of Spectator’s print products.',
+    description: 'You can ensure students continue to learn the skills of print journalism—collecting and displaying their best work for maximum impact—regardless of the medium’s costs. All editions will recognize your contribution in the masthead.',
+  },
+  {
+    amount: '$200,000',
+    title: 'Name the professional fellows program.',
+    description: 'We expect that this stipend will benefit three students each year. Over the course of the program, you’ll help as many as 75 journalists begin their career.',
+  },
+  {
+    amount: '$100,000',
+    title: 'Name a new prize for outstanding reporting.',
+    description: 'Friends and colleagues have come together to honor Stuart Karle ’82, Spectator’s 105th editor-in-chief and longtime board member.',
+  },
+  {
+    amount: '$50,000',
+    title: 'Sponsor five beneficiaries of the financial aid program.',
+    description: 'You’ll receive personalized notes from each year’s crop of students, with details about the work you’re making possible.',
+  },
+  {
+    amount: '$25,000',
+    title: 'Sponsor a new speaker series.',
+    description: 'You’ll make it possible for as many as 100 top journalists to visit campus and meet intimately with Spectator’s staff.',
+  },
+];
+
 export const faq = [
   {
     question: 'Why now?',

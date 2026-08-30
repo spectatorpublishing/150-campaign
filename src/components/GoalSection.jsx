@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { size } from '../device';
 import { goal, goals, DONATE_URL } from '../data/content';
+import DonorOpportunities from './DonorOpportunities';
 
 const Wrapper = styled.div`
   background-color: #faf8f5;
@@ -45,7 +46,7 @@ const Body = styled.p`
 
 const Callout = styled.blockquote`
   font-family: 'Bitter', serif;
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-size: clamp(1.2rem, 3vw, 1.75rem);
   font-weight: 700;
   color: #1c1c1c;
   line-height: 1.3;
@@ -75,7 +76,7 @@ const GoalLabel = styled.span`
 
 const GoalHeading = styled.h3`
   font-family: 'Bitter', serif;
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
   font-weight: 700;
   color: #1c1c1c;
   margin: 0 0 1.5rem;
@@ -219,6 +220,8 @@ const GoalSection = () => (
         </Inner>
       </GoalItem>
     ))}
+
+    <DonorOpportunities />
 
     <DonateBar>
       <DonateHeading>Help secure Spectator's next 150 years.</DonateHeading>

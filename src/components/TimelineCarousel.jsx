@@ -44,7 +44,7 @@ const CarouselOuter = styled.div`
   padding: 0 4rem;
 
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    padding: 0 2.5rem;
+    padding: 0 1rem;
   }
 `;
 
@@ -63,6 +63,10 @@ const ArrowButton = styled.button`
 
   &:hover:not(:disabled) {
     color: #7ecff4;
+  }
+
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
+    display: none;
   }
 `;
 
