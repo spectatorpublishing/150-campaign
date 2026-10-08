@@ -4,7 +4,7 @@ export const FAQ_ANCHOR = '#faq';
 export const mission = {
   heading: 'Our Mission',
   paragraphs: [
-    'The mission of the Columbia Daily Spectator is twofold: to serve as the independent news source reporting on Columbia University and the Morningside Heights area to serve our audience and community, and to train the next generation of journalists and leaders through giving our staff real opportunities to do work that matters.',
+    'The mission of the Columbia Daily Spectator is twofold: to be the independent news source for Columbia University and Morningside Heights, and to train the next generation of journalists and leaders by giving our staff real opportunities to do work that matters.',
     'Since our founding in 1877, the Spectator has trained generations of award-winning journalists. They learn the craft by producing tough, independent reporting on the university—and they go on to publish work of lasting impact at America\'s most powerful news organizations.',
   ],
 };
@@ -12,9 +12,9 @@ export const mission = {
 export const goal = {
   heading: 'Our Goal',
   intro:
-    'Spectator is celebrating its 150th anniversary at a moment of strength. But this success comes at an urgent moment: Spec has almost the smallest endowment among Ivy League newspapers. Independent journalism is more important than ever. If we want another 150 years of Spectator, this is the moment to act.',
+    'Spectator is celebrating its 150th anniversary from a position of strength, but at an urgent moment: Spec has one of the smallest endowments among Ivy League newspapers. Independent journalism is more important than ever. If we want another 150 years of Spectator, this is the moment to act.',
   callout:
-    'We will raise $1 million to accomplish two goals: to fortify Spectator and invest in its people.',
+    'We will raise $1.5 million to accomplish two goals: to fortify Spectator and invest in its people.',
 };
 
 export const goals = [
@@ -39,15 +39,15 @@ export const goals = [
       },
       {
         heading: '…So that they can create the strongest journalism on campus…',
-        body: 'Endowed by $100,000, a new prize will grant $3,000 every year to an outstanding student reporter—half in the fall, and half in the spring, to encourage continued in-depth coverage.',
+        body: 'The Stuart Karle Prize, endowed with $100,000 by friends and colleagues of Stuart Karle ’82, Spectator’s 105th editor-in-chief and longtime board member, grants $3,000 every year to an outstanding student reporter, half in the fall and half in the spring, to encourage sustained, in-depth coverage.',
       },
       {
         heading: '…Then launch into their first jobs…',
-        body: 'A new stipend pool of $225,000 will help graduating students afford entry-level media positions. These fellowships—three at $5,000 per year—can be the difference between a career that starts and one that doesn\'t.',
+        body: 'A new endowed fellowship fund of $625,000 will help graduating students afford entry-level media positions. These fellowships, three at about $10,000 per year, can be the difference between a career that starts and one that doesn’t.',
       },
       {
         heading: '… And return to campus to develop the next generation of Spec talent.',
-        body: 'A new speaker series, endowed at $25,000, will bring working journalists to campus for informal lunches with students every quarter.',
+        body: 'A new speaker series, endowed at $25,000, will bring working journalists back to campus for informal lunches with students.',
       },
     ],
   },
@@ -157,16 +157,6 @@ export const donorOpportunities = [
     description: 'You can ensure students continue to learn the skills of print journalism—collecting and displaying their best work for maximum impact—regardless of the medium’s costs. All editions will recognize your contribution in the masthead.',
   },
   {
-    amount: '$200,000',
-    title: 'Name the professional fellows program.',
-    description: 'We expect that this stipend will benefit three students each year. Over the course of the program, you’ll help as many as 75 journalists begin their career.',
-  },
-  {
-    amount: '$100,000',
-    title: 'Name a new prize for outstanding reporting.',
-    description: 'Friends and colleagues have come together to honor Stuart Karle ’82, Spectator’s 105th editor-in-chief and longtime board member.',
-  },
-  {
     amount: '$50,000',
     title: 'Sponsor five beneficiaries of the financial aid program.',
     description: 'You’ll receive personalized notes from each year’s crop of students, with details about the work you’re making possible.',
@@ -174,7 +164,7 @@ export const donorOpportunities = [
   {
     amount: '$25,000',
     title: 'Sponsor a new speaker series.',
-    description: 'You’ll make it possible for as many as 100 top journalists to visit campus and meet intimately with Spectator’s staff.',
+    description: 'You’ll bring top journalists to campus year after year to meet with Spectator’s staff.',
   },
 ];
 
@@ -187,7 +177,7 @@ export const faq = [
   {
     question: 'How will the money be used?',
     answer:
-      '$400,000 will go to the endowment, and $600,000 will go to a people fund supporting stipends and fellowships for our staff.',
+      '$400,000 will go to Spectator’s endowment, and $1.1 million will go to investing in our people: expanded work study, post-graduate fellowships, the Stuart Karle Prize, the Ady Barkan Fund for opinion journalism, and a new speaker series.',
   },
   {
     question: 'Is my donation tax-deductible?',
