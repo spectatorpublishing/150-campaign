@@ -43,7 +43,7 @@ export const goals = [
       },
       {
         heading: '…Then launch into their first jobs…',
-        body: 'A new stipend pool of $225,000 will help graduating students afford entry-level media positions. These fellowships—three at $5,000 per year—can be the difference between a career that starts and one that doesn\'t.',
+        body: 'A new endowed fellowship fund of $625,000 will help graduating students afford entry-level media positions. These fellowships, three at about $10,000 per year, can be the difference between a career that starts and one that doesn’t.',
       },
       {
         heading: '… And return to campus to develop the next generation of Spec talent.',
@@ -155,11 +155,6 @@ export const donorOpportunities = [
     amount: '$500,000',
     title: 'Endow the cost of Spectator’s print products.',
     description: 'You can ensure students continue to learn the skills of print journalism—collecting and displaying their best work for maximum impact—regardless of the medium’s costs. All editions will recognize your contribution in the masthead.',
-  },
-  {
-    amount: '$200,000',
-    title: 'Name the professional fellows program.',
-    description: 'We expect that this stipend will benefit three students each year. Over the course of the program, you’ll help as many as 75 journalists begin their career.',
   },
   {
     amount: '$50,000',
