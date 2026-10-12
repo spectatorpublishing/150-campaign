@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import FundraisingProgress from '../components/FundraisingProgress';
 import { size } from '../device';
 
 const Page = styled.div`
@@ -43,10 +44,44 @@ const Subhead = styled.p`
   margin: 0 0 2.5rem;
 `;
 
+const EmbedWrapper = styled.div`
+  position: relative;
+`;
+
 const EmbedFrame = styled.iframe`
   width: 100%;
   border: none;
   display: block;
+`;
+
+const Loader = styled.div`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 6rem;
+  gap: 1rem;
+  background-color: #faf8f5;
+  font-family: 'Open Sans', sans-serif;
+  color: #666;
+  transition: opacity 0.3s ease;
+  opacity: ${(props) => (props.$hidden ? 0 : 1)};
+  pointer-events: ${(props) => (props.$hidden ? 'none' : 'auto')};
+
+  &::before {
+    content: '';
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 3px solid #e0ddd8;
+    border-top-color: #7ecff4;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
 `;
 
 const embedHTML = `<!DOCTYPE html>
@@ -80,21 +115,40 @@ const embedHTML = `<!DOCTYPE html>
       window.parent.postMessage({ qgivHeight: document.body.scrollHeight }, '*');
     });
     observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+
+    // Tell parent window once the Qgiv form iframe has finished loading
+    var loadObserver = new MutationObserver(function() {
+      var form = document.querySelector('iframe');
+      if (!form) return;
+      loadObserver.disconnect();
+      form.addEventListener('load', function() {
+        window.parent.postMessage({ qgivLoaded: true }, '*');
+      });
+    });
+    loadObserver.observe(document.body, { childList: true, subtree: true });
   </script>
 </body>
 </html>`;
 
 const Donate = () => {
+  const frameRef = React.useRef(null);
+  const [loaded, setLoaded] = React.useState(false);
+
   const handleMessage = React.useCallback((e) => {
-    if (e.data && e.data.qgivHeight) {
-      const frame = document.getElementById('qgiv-frame');
-      if (frame) frame.style.height = e.data.qgivHeight + 40 + 'px';
-    }
+    const frame = frameRef.current;
+    if (!frame || e.source !== frame.contentWindow || !e.data) return;
+    if (e.data.qgivHeight) frame.style.height = e.data.qgivHeight + 40 + 'px';
+    if (e.data.qgivLoaded) setLoaded(true);
   }, []);
 
   React.useEffect(() => {
     window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
+    // Don't leave the loader up forever if the load signal never arrives
+    const fallback = setTimeout(() => setLoaded(true), 10000);
+    return () => {
+      window.removeEventListener('message', handleMessage);
+      clearTimeout(fallback);
+    };
   }, [handleMessage]);
 
   return (
@@ -103,13 +157,19 @@ const Donate = () => {
       <Main>
         <Heading>Donate</Heading>
         <Subhead>Support the next 150 years of the Columbia Daily Spectator.</Subhead>
-        <EmbedFrame
-          id="qgiv-frame"
-          srcDoc={embedHTML}
-          title="Donation Form"
-          height="900"
-          scrolling="no"
-        />
+        <FundraisingProgress />
+        <EmbedWrapper>
+          <EmbedFrame
+            ref={frameRef}
+            srcDoc={embedHTML}
+            title="Donation Form"
+            height="900"
+            scrolling="no"
+          />
+          <Loader $hidden={loaded} aria-hidden={loaded}>
+            Loading secure donation form…
+          </Loader>
+        </EmbedWrapper>
       </Main>
       <Footer />
     </Page>

@@ -9,6 +9,12 @@ export const mission = {
   ],
 };
 
+// Update `raised` as amount changes
+export const fundraising = {
+  goal: 1500000,
+  raised: 1034000,
+};
+
 export const goal = {
   heading: 'Our Goal',
   intro:

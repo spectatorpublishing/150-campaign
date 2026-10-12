@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { size } from '../device';
 import { DONATE_URL } from '../data/content';
+import LogoMorph from './LogoMorph';
 
 const HeroSection = styled.section`
   background-color: #1c1c1c;
@@ -13,12 +14,13 @@ const HeroSection = styled.section`
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 3rem 2rem 0;
-  padding-bottom: 15vh;
+  padding: 2rem 2rem 6rem;
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
 
   @media (max-width: ${size.mobile}) {
-    padding: 2rem 1.5rem 28vh;
+    padding: 2rem 1.5rem 6rem;
   }
 `;
 
@@ -115,6 +117,8 @@ const Arrow = styled.svg``;
 
 const Hero = () => (
   <HeroSection>
+    <LogoMorph />
+
     <Title>Secure the Spec</Title>
     <Subtitle>
       A campaign for the next 150 years of independent student journalism.

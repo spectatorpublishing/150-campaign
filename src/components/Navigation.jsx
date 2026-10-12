@@ -35,7 +35,7 @@ const NavLinks = styled.div`
   right: 2rem;
   display: flex;
   align-items: center;
-  gap: 1.75rem;
+  gap: 2rem;
 
   @media (max-width: ${size.mobile}) {
     display: none;
@@ -44,7 +44,7 @@ const NavLinks = styled.div`
 
 const NavLink = styled(RouterNavLink)`
   font-family: 'Open Sans', sans-serif;
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.75);
   text-decoration: none;
@@ -107,7 +107,7 @@ const Drawer = styled.div`
 
 const DrawerLink = styled(RouterNavLink)`
   font-family: 'Open Sans', sans-serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.75);
   text-decoration: none;
