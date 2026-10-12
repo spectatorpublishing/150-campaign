@@ -4,9 +4,13 @@ import { Link } from 'react-router-dom';
 import { size } from '../device';
 import { DONATE_URL } from '../data/content';
 import LogoMorph from './LogoMorph';
+import heroImg from '../assets/page-imgs/JaimeDanies_LowSunset-1.webp';
 
 const HeroSection = styled.section`
   background-color: #1c1c1c;
+  background-image: url(${heroImg});
+  background-size: cover;
+  background-position: center;
   color: white;
   height: calc(100vh - 44px);
   display: flex;
@@ -14,10 +18,18 @@ const HeroSection = styled.section`
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 2rem 2rem 6rem;
+  padding: 2rem 2rem 25vh;
   position: relative;
   isolation: isolate;
   overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(28, 28, 28, 0.62);
+    z-index: -1;
+  }
 
   @media (max-width: ${size.mobile}) {
     padding: 2rem 1.5rem 6rem;
