@@ -1,28 +1,60 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { size } from '../device';
-import { goal, goals, DONATE_URL } from '../data/content';
+import { DONATE_URL } from '../data/content';
 import DonorOpportunities from './DonorOpportunities';
+
+function useFadeIn(threshold = 0.1) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return [ref, visible];
+}
 
 const Wrapper = styled.div`
   background-color: #faf8f5;
 `;
 
-const IntroSection = styled.section`
-  padding: 3.5rem 2rem 2rem;
+const HeroSection = styled.section`
+  padding: 5rem 2rem 2.5rem;
+  text-align: center;
 
   @media (max-width: ${size.mobile}) {
-    padding: 2.5rem 1.5rem 1.5rem;
+    padding: 3.5rem 1.5rem 2rem;
   }
 `;
 
-const Inner = styled.div`
+const HeroInner = styled.div`
   max-width: 760px;
   margin: 0 auto;
+
+  & > * {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.75s ease, transform 0.75s ease;
+  }
+
+  &.visible > *:nth-child(1) { transition-delay: 0s; }
+  &.visible > *:nth-child(2) { transition-delay: 0.1s; }
+  &.visible > *:nth-child(3) { transition-delay: 0.22s; }
+
+  &.visible > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
 `;
 
-const Heading = styled.h2`
+const SectionLabel = styled.h2`
   font-family: 'Bitter', serif;
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
@@ -34,117 +66,93 @@ const Heading = styled.h2`
   text-underline-offset: 0.2em;
 `;
 
-const Body = styled.p`
-  font-family: 'Merriweather', serif;
-  font-size: 1.1rem;
-  line-height: 1.75;
-  color: #222;
-  margin: 0 0 1.25rem;
-
-  @media (max-width: ${size.mobile}) { font-size: 0.95rem; }
-`;
-
-const Callout = styled.blockquote`
+const BigNumber = styled.h2`
   font-family: 'Bitter', serif;
-  font-size: clamp(1.2rem, 3vw, 1.75rem);
+  font-size: clamp(5rem, 15vw, 10rem);
   font-weight: 700;
   color: #1c1c1c;
-  line-height: 1.3;
-  margin: 1.5rem 0;
-  padding: 0;
-  border: none;
+  line-height: 1;
+  margin: 0 0 1.25rem;
+  letter-spacing: -0.02em;
 `;
 
-const GoalItem = styled.section`
-  padding: 2rem 2rem;
+const HeroTagline = styled.p`
+  font-family: 'Bitter', serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 600;
+  color: #555;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.5;
+`;
+
+const CardsSection = styled.section`
+  padding: 1.5rem 2rem 4.5rem;
 
   @media (max-width: ${size.mobile}) {
-    padding: 1.5rem 1.5rem;
+    padding: 1rem 1.5rem 3rem;
   }
 `;
 
-const GoalLabel = styled.span`
-  display: block;
-  font-family: 'Merriweather', serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #7ecff4;
-  margin-bottom: 0.5rem;
+const CardGridInner = styled.div`
+  max-width: 920px;
+  margin: 0 auto;
 `;
 
-const GoalHeading = styled.h3`
+const CardGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+
+  & > * {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  &.visible > *:nth-child(1) { transition-delay: 0s; }
+  &.visible > *:nth-child(2) { transition-delay: 0.13s; }
+
+  &.visible > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: ${size.mobile}) {
+    grid-template-columns: 1fr;
+
+    &.visible > *:nth-child(2) { transition-delay: 0s; }
+  }
+`;
+
+const Card = styled.div`
+  border-radius: 1.75rem;
+  padding: 2.75rem 2.5rem;
+  background-color: ${({ $dark }) => $dark ? '#1c1c1c' : '#7ecff4'};
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media (max-width: ${size.mobile}) {
+    padding: 2rem 1.75rem;
+  }
+`;
+
+const CardTitle = styled.h3`
   font-family: 'Bitter', serif;
-  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
   font-weight: 700;
-  color: #1c1c1c;
-  margin: 0 0 1.5rem;
-  ${({ underline }) => underline && `
-    text-decoration: underline;
-    text-decoration-color: #7ecff4;
-    text-decoration-thickness: 3px;
-    text-underline-offset: 0.2em;
-  `}
-`;
-
-const Highlight = styled.p`
-  font-family: 'Merriweather', serif;
-  font-size: 1.1rem;
-  line-height: 1.75;
-  color: #222;
-  margin: 0 0 1.25rem;
-
-  strong { font-weight: 600; }
-
-  @media (max-width: ${size.mobile}) { font-size: 0.95rem; }
-`;
-
-const Tagline = styled.p`
-  font-family: 'Merriweather', serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  line-height: 1.75;
-  color: #1c1c1c;
-  margin: 0 0 1.25rem;
-
-  em { font-style: italic; }
-
-  @media (max-width: ${size.mobile}) { font-size: 0.95rem; }
-`;
-
-const GoalIntro = styled.p`
-  font-family: 'Merriweather', serif;
-  font-size: 1.1rem;
-  line-height: 1.75;
-  color: #222;
-  margin: 0 0 1.5rem;
-
-  @media (max-width: ${size.mobile}) { font-size: 0.95rem; }
-`;
-
-const SubSection = styled.div`
-  margin-bottom: 1.5rem;
-`;
-
-const SubHeading = styled.h4`
-  font-family: 'Merriweather', serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #1c1c1c;
-  margin: 0 0 0.4rem;
-
-  @media (max-width: ${size.mobile}) { font-size: 0.95rem; }
-`;
-
-const SubBody = styled.p`
-  font-family: 'Merriweather', serif;
-  font-size: 1.1rem;
-  line-height: 1.75;
-  color: #222;
+  color: ${({ $dark }) => $dark ? '#fff' : '#1c1c1c'};
   margin: 0;
+  line-height: 1.15;
+`;
 
-  @media (max-width: ${size.mobile}) { font-size: 0.95rem; }
+const CardDesc = styled.p`
+  font-family: 'Merriweather', serif;
+  font-size: 0.97rem;
+  line-height: 1.72;
+  color: ${({ $dark }) => $dark ? '#fff' : '#1c1c1c'};
+  margin: 0;
 `;
 
 const DonateBar = styled.div`
@@ -173,63 +181,51 @@ const DonateButton = styled(Link)`
   letter-spacing: 0.04em;
   transition: background-color 0.2s;
 
-  &:hover {
-    background-color: #93d9f8;
-  }
+  &:hover { background-color: #93d9f8; }
 `;
 
-const GoalSection = () => (
-  <Wrapper id="goal">
-    <IntroSection>
-      <Inner>
-        <Heading>{goal.heading}</Heading>
-        <Body>{goal.intro}</Body>
-        <Callout>{goal.callout}</Callout>
-      </Inner>
-    </IntroSection>
+const GoalSection = () => {
+  const [heroRef, heroVisible] = useFadeIn(0.1);
+  const [cardsRef, cardsVisible] = useFadeIn(0.1);
 
-    {goals.map((g) => (
-      <GoalItem key={g.id} id={g.id}>
-        <Inner>
-        {g.subsections ? (
-          <>
-            <GoalHeading>{g.title}</GoalHeading>
-            <Tagline>
-              Spectator makes great journalists—and great journalists love giving back to <em>Spectator</em>.
-            </Tagline>
-            <GoalIntro>{g.intro}</GoalIntro>
-            {g.subsections.map((sub, j) => (
-              <SubSection key={j}>
-                <SubHeading>{sub.heading}</SubHeading>
-                <SubBody>{sub.body}</SubBody>
-              </SubSection>
-            ))}
-          </>
-        ) : (
-          <>
-            <GoalHeading>{g.title}</GoalHeading>
-            {g.body.map((p, j) => (
-              <Highlight key={j}>
-                {p.includes(g.highlight)
-                  ? <>{p.split(g.highlight)[0]}<strong>{g.highlight}</strong>{p.split(g.highlight)[1]}</>
-                  : p}
-              </Highlight>
-            ))}
-          </>
-        )}
-        </Inner>
-      </GoalItem>
-    ))}
+  return (
+    <Wrapper id="goal">
+      <HeroSection>
+        <HeroInner ref={heroRef} className={heroVisible ? 'visible' : ''}>
+          <SectionLabel>Our Goal</SectionLabel>
+          <BigNumber>$1.5M</BigNumber>
+          <HeroTagline>To fortify Spectator and invest in its people.</HeroTagline>
+        </HeroInner>
+      </HeroSection>
 
-    <DonorOpportunities />
+      <CardsSection>
+        <CardGridInner>
+          <CardGrid ref={cardsRef} className={cardsVisible ? 'visible' : ''}>
+            <Card>
+              <CardTitle>Secure the Future</CardTitle>
+              <CardDesc>
+                A major boost to Spectator's endowment—generating income in perpetuity to backstop operations, protect editorial independence, and let Spec plan boldly for decades to come.
+              </CardDesc>
+            </Card>
 
-    <DonateBar>
-      <DonateHeading>Help secure Spectator's next 150 years.</DonateHeading>
-      <DonateButton to={DONATE_URL}>
-        Donate Now
-      </DonateButton>
-    </DonateBar>
-  </Wrapper>
-);
+            <Card $dark>
+              <CardTitle $dark>Invest in People</CardTitle>
+              <CardDesc $dark>
+                A new suite of programs to attract journalists from every background, reward outstanding reporting, and launch graduates into their first jobs.
+              </CardDesc>
+            </Card>
+          </CardGrid>
+        </CardGridInner>
+      </CardsSection>
+
+      <DonorOpportunities />
+
+      <DonateBar>
+        <DonateHeading>Help secure Spectator's next 150 years.</DonateHeading>
+        <DonateButton to={DONATE_URL}>Donate Now</DonateButton>
+      </DonateBar>
+    </Wrapper>
+  );
+};
 
 export default GoalSection;
