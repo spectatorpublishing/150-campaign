@@ -14,8 +14,8 @@ const LOGOS = [logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8];
 // How the torn scraps travel on the way into LOGOS[k] (index 0 is the fade-in).
 const TRANSITION_STYLES = [null, 'burst', 'wind', 'drop', 'burst', 'wind', 'drop', 'finale'];
 const INTRO_MS = 900;
-const TRANSITION_MS = 1600;
-const FINALE_MS = 2300;
+const TRANSITION_MS = 1800;
+const FINALE_MS = 2400;
 const HOLD_MS = 900;
 const MAX_DELAY = 0.35;
 
@@ -23,7 +23,7 @@ const MAX_DELAY = 0.35;
 // fade into the original scan so they look like torn pieces of newsprint.
 const INK_RGB = [245, 241, 232];
 const INK_ALPHA = 0.92;
-const PAPER_ALPHA = 0.95;
+const PAPER_ALPHA = 0.7;
 const INK_DARK = 60;
 const INK_LIGHT = 150;
 
@@ -33,7 +33,7 @@ const Slot = styled.div`
   position: relative;
   width: min(88vw, 900px, 120vh);
   aspect-ratio: 1710 / 300;
-  margin-top: 5vh;
+  margin-bottom: 9vh;
 `;
 
 const Canvas = styled.canvas`
@@ -171,9 +171,9 @@ const planFlight = (style, pieces, box) => {
     if (style === 'wind') {
       return {
         delay: across * MAX_DELAY,
-        dx: rand(0.12, 0.4) * box.width,
-        dy: -rand(0.2, 1.3) * box.height,
-        rot: rand(0.5, 1.6),
+        dx: rand(0.06, 0.2) * box.width,
+        dy: -rand(0.1, 0.6) * box.height,
+        rot: rand(0.25, 0.8),
         flips: 1,
         sway: 0,
       };
@@ -181,23 +181,23 @@ const planFlight = (style, pieces, box) => {
     if (style === 'drop') {
       return {
         delay: rand(0, MAX_DELAY),
-        dx: rand(-0.4, 0.4) * box.height,
-        dy: rand(0.9, 1.9) * box.height,
-        rot: rand(-1.2, 1.2),
+        dx: rand(-0.2, 0.2) * box.height,
+        dy: rand(0.4, 0.9) * box.height,
+        rot: rand(-0.6, 0.6),
         flips: 1,
-        sway: rand(0.15, 0.35) * box.height,
+        sway: rand(0.08, 0.18) * box.height,
       };
     }
     const finale = style === 'finale';
     const ax = p.cx - mx;
     const ay = (p.cy - my) * 4;
     const len = Math.hypot(ax, ay) || 1;
-    const dist = rand(0.15, 0.35) * box.width * (finale ? 1.6 : 1);
+    const dist = rand(0.07, 0.17) * box.width * (finale ? 1.4 : 1);
     return {
       delay: finale ? rand(0, 0.15) : (len / (box.width / 2)) * MAX_DELAY * 0.8,
       dx: (ax / len) * dist,
-      dy: (ay / len) * dist * 0.6 + rand(-0.3, 0.3) * box.height,
-      rot: rand(-1, 1) * (finale ? 3 : 1.5),
+      dy: (ay / len) * dist * 0.6 + rand(-0.15, 0.15) * box.height,
+      rot: rand(-1, 1) * (finale ? 1.5 : 0.75),
       flips: finale ? 3 : 1,
       sway: 0,
     };
@@ -265,7 +265,7 @@ const LogoMorph = () => {
         const lift = Math.sin(Math.PI * easeOut(t));
         const side = Math.floor(t * f.flips + 0.5) % 2 ? toTex : fromTex;
         const squash = Math.max(Math.abs(Math.cos(Math.PI * t * f.flips)), 0.02);
-        const scale = 1 + 0.12 * arc;
+        const scale = 1 + 0.05 * arc;
 
         ctx.save();
         ctx.translate(

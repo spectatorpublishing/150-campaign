@@ -11,7 +11,7 @@ export const mission = {
 
 // Update `raised` as amount changes
 export const fundraising = {
-  goal: 1000000,
+  goal: 1500000,
   raised: 1034000,
 };
 
@@ -20,7 +20,7 @@ export const goal = {
   intro:
     'Spectator is celebrating its 150th anniversary at a moment of strength. But this success comes at an urgent moment: Spec has almost the smallest endowment among Ivy League newspapers. Independent journalism is more important than ever. If we want another 150 years of Spectator, this is the moment to act.',
   callout:
-    'We will raise $1 million to accomplish two goals: to fortify Spectator and invest in its people.',
+    'We will raise $1.5 million to accomplish two goals: to fortify Spectator and invest in its people.',
 };
 
 export const goals = [

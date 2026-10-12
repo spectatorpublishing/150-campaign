@@ -117,6 +117,8 @@ const Arrow = styled.svg``;
 
 const Hero = () => (
   <HeroSection>
+    <LogoMorph />
+
     <Title>Secure the Spec</Title>
     <Subtitle>
       A campaign for the next 150 years of independent student journalism.
@@ -126,8 +128,6 @@ const Hero = () => (
         Donate Now
       </FilledButton>
     </ButtonRow>
-
-    <LogoMorph />
 
     <ScrollCue href="#mission">
       <ScrollLabel>Learn more</ScrollLabel>
