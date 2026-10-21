@@ -152,17 +152,17 @@ export const testimonials = [
 
 export const timeline = [
   { year: '1877', event: 'Founded as a twice-monthly publication', image: '1877' },
-  { year: '1902', event: 'Spectator becomes a daily newspaper', image: null },
+  { year: '1902', event: 'Spectator becomes a daily newspaper', image: '1902' },
   { year: '1933', event: 'Covering campus protests against fascism', image: '1933', imageOnly: true },
-  { year: '1962', event: 'Financial independence from Columbia', image: null },
+  { year: '1962', event: 'Financial independence from Columbia', image: '1962', bgSize: 'contain', bgColor: '#d6cfc0' },
   { year: '1968', event: 'Hamilton Hall', image: '1968', imageOnly: true },
   { year: '1983', event: 'Co-ed at last', image: '1983', imageOnly: true },
   { year: '1988', event: 'We Win!', image: '1988', imageOnly: true },
-  { year: '1998', event: 'columbiaspectator.com goes online', image: null },
+  { year: '1998', event: 'columbiaspectator.com goes online', image: '1998', bgSize: 'contain', bgColor: '#d0cfc9' },
   { year: '2004', event: 'A new format: broadsheet and color. The Eye magazine debuts.', image: '2004' },
-  { year: '2014', event: 'Shift to digital-first publishing', image: null },
+  { year: '2014', event: 'Shift to digital-first publishing', image: '2014' },
   { year: '2024', event: 'Encampments spread across the nation', image: '2024', imageOnly: true },
-  { year: '2027', event: '150th anniversary celebration', image: null },
+  { year: '2027', event: '150th anniversary celebration', image: '2027', bgSize: 'contain', bgColor: '#fff' },
 ];
 
 export const donorOpportunities = [
