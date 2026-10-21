@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { size } from '../device';
 import { mission } from '../data/content';
-import newspapersImg from '../assets/page-imgs/newspapers.webp';
+import newspapersImg from '../assets/page-imgs/staff-group.jpeg';
 
 const Section = styled.section`
   background-color: #f2efe9;
@@ -60,7 +60,7 @@ const Body = styled.p`
 const ImageCol = styled.div`
   border-radius: 1rem;
   overflow: hidden;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
 
   @media (max-width: ${size.tablet}) {
     max-width: 540px;

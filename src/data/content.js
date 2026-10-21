@@ -4,8 +4,8 @@ export const FAQ_ANCHOR = '#faq';
 export const mission = {
   heading: 'Our Mission',
   paragraphs: [
-    'The mission of the Columbia Daily Spectator is twofold: to serve as the independent news source reporting on Columbia University and the Morningside Heights area to serve our audience and community, and to train the next generation of journalists and leaders through giving our staff real opportunities to do work that matters.',
-    'Since our founding in 1877, the Spectator has trained generations of award-winning journalists. They learn the craft by producing tough, independent reporting on the university—and they go on to publish work of lasting impact at America\'s most powerful news organizations.',
+    'Founded in 1877, the Columbia Daily Spectator has trained generations of award-winning journalists. They learn the craft by producing tough, independent reporting on the university—and they go on to publish work of lasting impact at America\'s most powerful news organizations.',
+    'Spectator staffers have led The New York Times, The Washington Post, network news divisions, and other essential outlets; they have written critically acclaimed books; they have won at least 16 Pulitzer Prizes, as well as Oscars and Emmys and MacArthur Fellowships.'
   ],
 };
 
@@ -13,6 +13,15 @@ export const mission = {
 export const fundraising = {
   goal: 1500000,
   raised: 1034000,
+};
+
+export const whyNow = {
+  heading: 'Why now?',
+  paragraphs: [
+    { bold: 'Spec is celebrating its 150th anniversary at a moment of strength.', rest: ' Recognized twice in recent years as the best student newspaper in America, Spectator is the essential publication for recording campus history, informing the public, and keeping leadership accountable.' },
+    { bold: 'But this success comes at a dangerous and urgent moment.', rest: ' Spec has almost the smallest endowment among Ivy League newspapers. Its revenue streams are threatened at the same time that ominous trends in technology, government, and the law are converging — and making independent journalism more important than ever.' },
+    { bold: 'If we want another 150 years of Spectator, this is the moment to act.', rest: ' It is a once-in-a-lifetime opportunity to leverage our strength and guarantee the future of student journalism at Columbia for generations to come.' },
+  ],
 };
 
 export const goal = {
@@ -191,18 +200,18 @@ export const faq = [
       'Spectator is turning 150. The milestone is an opportunity to build an institution that lasts another 150 years. We have momentum, community trust, and a clear plan—this is the moment to act.',
   },
   {
-    question: 'How will the money be used?',
+    question: 'Is my donation tax deductible?',
     answer:
-      '$400,000 will go to the endowment, and $600,000 will go to a people fund supporting stipends and fellowships for our staff.',
+      'Yes. Spectator operates as Spectator Publishing Co., a 501c3 nonprofit (EIN 13-1975005), and donations are fully tax-deductible.',
   },
   {
-    question: 'Is my donation tax-deductible?',
+    question: 'Can I choose how my donation is used?',
     answer:
-      'Yes. Donations are processed through Columbia University and are fully tax-deductible to the extent allowed by law.',
+      'Yes. When you donate, please include your instructions.',
   },
   {
-    question: 'Can I give to a specific fund?',
+    question: 'Is Spectator financially independent from Columbia University?',
     answer:
-      'Yes. When you donate, you can designate your gift to the endowment, the people fund, or leave it unrestricted.',
+      'Yes, Spectator is a 501c3 nonprofit. It has been financially independent from the University since 1962.',
   },
 ];
