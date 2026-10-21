@@ -32,7 +32,8 @@ const HeroSection = styled.section`
   }
 
   @media (max-width: ${size.mobile}) {
-    padding: 2rem 1.5rem 6rem;
+    padding: 2rem 1.5rem 20vh;
+    justify-content: center;
   }
 `;
 
@@ -133,7 +134,7 @@ const Hero = () => (
 
     <Title>Secure the Spec</Title>
     <Subtitle>
-      A campaign for the next 150 years of independent student journalism.
+      A $1.5 million campaign for the next 150 years of independent student journalism.
     </Subtitle>
     <ButtonRow>
       <FilledButton to={DONATE_URL}>

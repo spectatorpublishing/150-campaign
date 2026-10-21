@@ -1,8 +1,9 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import { size } from '../device';
 import { mission } from '../data/content';
 import newspaperImg from '../assets/page-imgs/newspaper-we-win.png';
+import { useFadeIn } from '../hooks/useFadeIn';
 
 const Section = styled.section`
   background-color: #f2efe9;
@@ -27,6 +28,21 @@ const Inner = styled.div`
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
+`;
+
+const FadeChildren = styled.div`
+  & > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  &.visible > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  ${[...Array(6)].map((_, i) => `&.visible > *:nth-child(${i + 1}) { transition-delay: ${i * 0.1}s; }`).join('\n  ')}
 `;
 
 const TextCol = styled.div`
@@ -71,6 +87,11 @@ const ImageCol = styled.div`
   justify-content: flex-start;
   align-items: flex-end;
   margin-bottom: 2rem;
+
+  @media (max-width: ${size.mobile}) {
+    margin-top: -2.5rem;
+    justify-content: center;
+  }
 `;
 
 const riseIn = keyframes`
@@ -91,22 +112,33 @@ const Img = styled.img`
     width: 90%;
     max-width: 420px;
   }
+
+  @media (max-width: ${size.mobile}) {
+    width: 65%;
+    max-width: 300px;
+  }
 `;
 
-const MissionSection = () => (
-  <Section id="mission">
-    <Inner>
-      <TextCol>
-        <Heading>{mission.heading}</Heading>
-        {mission.paragraphs.map((p, i) => (
-          <Body key={i}>{p}</Body>
-        ))}
-      </TextCol>
-      <ImageCol>
-        <Img src={newspaperImg} alt="Columbia Spectator 'We Win!' front page" />
-      </ImageCol>
-    </Inner>
-  </Section>
-);
+const MissionSection = () => {
+  const [ref, visible] = useFadeIn(0.1);
+
+  return (
+    <Section id="mission">
+      <Inner>
+        <TextCol>
+          <FadeChildren ref={ref} className={visible ? 'visible' : ''}>
+            <Heading>{mission.heading}</Heading>
+            {mission.paragraphs.map((p, i) => (
+              <Body key={i}>{p}</Body>
+            ))}
+          </FadeChildren>
+        </TextCol>
+        <ImageCol>
+          <Img src={newspaperImg} alt="Columbia Spectator 'We Win!' front page" />
+        </ImageCol>
+      </Inner>
+    </Section>
+  );
+};
 
 export default MissionSection;

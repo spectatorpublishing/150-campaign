@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useFadeIn } from '../hooks/useFadeIn';
 import { size } from '../device';
 import { whyNow } from '../data/content';
 import columbiaSkyline from '../assets/page-imgs/columbia-skyline.jpeg';
@@ -12,7 +13,7 @@ const Section = styled.section`
   background-position: center;
 
   @media (max-width: ${size.mobile}) {
-    padding: 3rem 1.5rem;
+    padding: 3rem 0.75rem;
   }
 `;
 
@@ -57,14 +58,35 @@ const Body = styled.p`
   }
 `;
 
-const WhyNowSection = () => (
-  <Section id="why-now">
-    <TextBox>
-{whyNow.paragraphs.map((p, i) => (
-        <Body key={i}><strong>{p.bold}</strong>{p.rest}</Body>
-      ))}
-    </TextBox>
-  </Section>
-);
+const FadeChildren = styled.div`
+  & > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  &.visible > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  ${[...Array(6)].map((_, i) => `&.visible > *:nth-child(${i + 1}) { transition-delay: ${i * 0.1}s; }`).join('\n  ')}
+`;
+
+const WhyNowSection = () => {
+  const [ref, visible] = useFadeIn(0.1);
+
+  return (
+    <Section id="why-now">
+      <TextBox>
+        <FadeChildren ref={ref} className={visible ? 'visible' : ''}>
+          {whyNow.paragraphs.map((p, i) => (
+            <Body key={i}><strong>{p.bold}</strong>{p.rest}</Body>
+          ))}
+        </FadeChildren>
+      </TextBox>
+    </Section>
+  );
+};
 
 export default WhyNowSection;

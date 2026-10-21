@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes, css } from 'styled-components';
+import { useFadeIn } from '../hooks/useFadeIn';
 import { timeline } from '../data/content';
 
 import img1877 from '../assets/timeline-imgs/1877.png';
@@ -216,6 +217,7 @@ const Dot = styled.button`
 const TimelineCarousel = () => {
   const [page, setPage] = useState(0);
   const [direction, setDirection] = useState('next');
+  const [headingRef, headingVisible] = useFadeIn(0.1);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 600);
   const touchStartX = useRef(null);
 
@@ -248,7 +250,16 @@ const TimelineCarousel = () => {
   return (
     <Wrapper id="timeline">
     <HeadingBar>
-      <Heading>150 Years of Spectator</Heading>
+      <Heading
+        ref={headingRef}
+        style={{
+          opacity: headingVisible ? 1 : 0,
+          transform: headingVisible ? 'translateY(0)' : 'translateY(20px)',
+          transition: 'opacity 0.7s ease, transform 0.7s ease',
+        }}
+      >
+        150 Years of Spectator
+      </Heading>
     </HeadingBar>
     <Section onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
       <PanelsWrapper>

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useFadeIn } from '../hooks/useFadeIn';
 import styled from 'styled-components';
 import { size } from '../device';
 import { testimonials } from '../data/content';
@@ -7,6 +8,10 @@ const Section = styled.section`
   background-color: #f2efe9;
   padding: 4rem 0 3rem;
   overflow: hidden;
+
+  @media (max-width: ${size.mobile}) {
+    padding-top: 2rem;
+  }
 `;
 
 const Inner = styled.div`
@@ -151,6 +156,7 @@ const TestimonialsCarousel = () => {
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState('right');
   const touchStartX = useRef(null);
+  const [headingRef, headingVisible] = useFadeIn(0.1);
 
   const prev = () => { setDir('left');  setIndex(i => Math.max(0, i - 1)); };
   const next = () => { setDir('right'); setIndex(i => Math.min(testimonials.length - 1, i + 1)); };
@@ -169,7 +175,14 @@ const TestimonialsCarousel = () => {
   return (
     <Section id="testimonials">
       <Inner>
-        <Heading>
+        <Heading
+          ref={headingRef}
+          style={{
+            opacity: headingVisible ? 1 : 0,
+            transform: headingVisible ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'opacity 0.7s ease, transform 0.7s ease',
+          }}
+        >
           Why I'm Supporting the Spectator
         </Heading>
       </Inner>
