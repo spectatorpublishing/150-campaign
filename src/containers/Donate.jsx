@@ -157,7 +157,7 @@ const Donate = () => {
       <Main>
         <Heading>Donate</Heading>
         <Subhead>Support the next 150 years of the Columbia Daily Spectator.</Subhead>
-        <FundraisingProgress />
+        {/*<FundraisingProgress />*/}
         <EmbedWrapper>
           <EmbedFrame
             ref={frameRef}
