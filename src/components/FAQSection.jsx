@@ -95,6 +95,9 @@ const FAQSection = () => {
     <Section id="faq">
       <Inner>
         <Heading>FAQs</Heading>
+        <AnswerText style={{ marginBottom: '2rem', fontFamily: "'Open Sans', sans-serif", color: '#1c1c1c' }}>
+          Want to learn more? Contact <a href="mailto:giving@columbiaspectator.com" style={{ color: '#7ecff4' }}>giving@columbiaspectator.com</a>.
+        </AnswerText>
         {faq.map((item, i) => (
           <Item key={i}>
             <Question onClick={() => toggle(i)}>
