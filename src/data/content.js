@@ -58,7 +58,7 @@ export const goals = [
       },
       {
         heading: '…Then launch into their first jobs…',
-        body: 'A new stipend pool of $225,000 will help graduating students afford entry-level media positions. These fellowships—three at $5,000 per year—can be the difference between a career that starts and one that doesn\'t.',
+        body: 'A new stipend pool of fellowships will help graduating students afford entry-level media positions. These fellowships can be the difference between a career that starts and one that doesn\'t.',
       },
       {
         heading: '… And return to campus to develop the next generation of Spec talent.',

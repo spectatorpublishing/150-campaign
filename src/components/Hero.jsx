@@ -140,6 +140,9 @@ const Hero = () => (
       <FilledButton to={DONATE_URL}>
         Donate Now
       </FilledButton>
+      <OutlineButton href="/Spectator_150_brochure.pdf" target="_blank" rel="noopener noreferrer">
+        Get the Brochure
+      </OutlineButton>
     </ButtonRow>
 
     <ScrollCue href="#mission">

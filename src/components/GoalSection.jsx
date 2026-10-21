@@ -251,7 +251,7 @@ const GoalSection = () => {
                 <CardImg src={workStudyImg} alt="Spectator student working" />
                 <CardBody>
                   <SubLabel>Expand Work-Study</SubLabel>
-                  <GoalDesc style={{ margin: '0.4rem 0 0' }}>Many talented students cannot afford to spend dozens of unpaid hours per week in the newsroom. Since 2014, we have proudly offered a work-study program that allows students with financial need to get paid for the hours they pour into Spectator.</GoalDesc>
+                  <GoalDesc style={{ margin: '0.4rem 0 0' }}>Many talented students cannot afford to spend dozens of unpaid hours per week in the newsroom. Since 2014, we have proudly offered a <strong>work-study program</strong> that allows students with financial need to get paid for the hours they pour into Spectator.</GoalDesc>
                 </CardBody>
               </Card>
 
@@ -275,7 +275,7 @@ const GoalSection = () => {
                 <CardImg src={earlyCareerImg} alt="Spectator journalists at early-career event" />
                 <CardBody>
                   <SubLabel>Support Early-career Journalists</SubLabel>
-                  <GoalDesc style={{ margin: '0.4rem 0 0' }}>A new stipend pool of fellowships to help graduating students afford entry-level media positions. These fellowships can be the difference between a career that starts and one that doesn't.</GoalDesc>
+                  <GoalDesc style={{ margin: '0.4rem 0 0' }}>A new <strong>stipend pool of fellowships</strong> will help graduating students afford entry-level media positions. These fellowships can be the difference between a career that starts and one that doesn't.</GoalDesc>
                 </CardBody>
               </Card>
 
@@ -283,7 +283,7 @@ const GoalSection = () => {
                 <CardImg src={speakersImg} alt="Spectator Media Conference panel" />
                 <CardBody>
                   <SubLabel>Develop the Next Generation</SubLabel>
-                  <GoalDesc style={{ margin: '0.4rem 0 0' }}>A new speaker series will bring working journalists to campus for informal lunches with students.</GoalDesc>
+                  <GoalDesc style={{ margin: '0.4rem 0 0' }}>A new <strong>speaker series</strong> will bring working journalists to campus for informal lunches with students.</GoalDesc>
                 </CardBody>
               </Card>
             </CardGrid>
