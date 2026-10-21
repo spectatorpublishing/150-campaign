@@ -301,7 +301,7 @@ const GoalSection = () => {
           <BrochureImg src={brochureCover} alt="Secure the Spec brochure cover" style={{ cursor: 'pointer' }} />
         </a>
         <BrochureButton href="/Spectator_150_brochure.pdf" target="_blank" rel="noopener noreferrer">
-          Get the Secure the Spec brochure
+          Read the Secure the Spec brochure
         </BrochureButton>
       </BrochureBar>
     </>

@@ -105,6 +105,38 @@ const Drawer = styled.div`
   }
 `;
 
+const PlainNavLink = styled.a`
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    color: #ffffff;
+  }
+`;
+
+const DonateButton = styled(RouterNavLink)`
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1c1c1c;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  background-color: #7ecff4;
+  padding: 0.4rem 1.1rem;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #93d9f8;
+  }
+`;
+
 const DrawerLink = styled(RouterNavLink)`
   font-family: 'Open Sans', sans-serif;
   font-size: 1.1rem;
@@ -144,7 +176,8 @@ const Navigation = () => {
 
       <NavLinks>
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/donate">Donate</NavLink>
+        <PlainNavLink href="/#faq">FAQs</PlainNavLink>
+        <DonateButton to="/donate">Donate</DonateButton>
       </NavLinks>
 
       <HamburgerButton onClick={() => setOpen(o => !o)} aria-label="Toggle menu">
@@ -164,7 +197,8 @@ const Navigation = () => {
 
       <Drawer open={open}>
         <DrawerLink to="/">Home</DrawerLink>
-        <DrawerLink to="/donate">Donate</DrawerLink>
+        <PlainNavLink href="/#faq">FAQs</PlainNavLink>
+        <DonateButton to="/donate">Donate</DonateButton>
       </Drawer>
     </NavBar>
   );

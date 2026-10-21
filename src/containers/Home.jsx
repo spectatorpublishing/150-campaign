@@ -5,6 +5,7 @@ import MissionSection from '../components/MissionSection';
 import WhyNowSection from '../components/WhyNowSection';
 import GoalSection from '../components/GoalSection';
 import TestimonialsCarousel from '../components/TestimonialsCarousel';
+import WorkStudyTestimonials from '../components/WorkStudyTestimonials';
 import TimelineCarousel from '../components/TimelineCarousel';
 import FAQSection from '../components/FAQSection';
 import Footer from '../components/Footer';
@@ -16,6 +17,7 @@ const Home = () => (
     <MissionSection />
     <WhyNowSection />
     <GoalSection />
+    <WorkStudyTestimonials />
     <TestimonialsCarousel />
     <TimelineCarousel />
     <FAQSection />
