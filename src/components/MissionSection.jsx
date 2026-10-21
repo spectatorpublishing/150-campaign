@@ -2,14 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import { size } from '../device';
 import { mission } from '../data/content';
-import newspapersImg from '../assets/page-imgs/staff-group.jpeg';
+import newspaperImg from '../assets/page-imgs/newspaper-we-win.png';
 
 const Section = styled.section`
   background-color: #f2efe9;
-  padding: 5rem 2rem;
+  padding: 5rem 2rem 0;
+  overflow: hidden;
+  position: relative;
 
   @media (max-width: ${size.mobile}) {
-    padding: 3rem 1.5rem;
+    padding: 3rem 1.5rem 0;
   }
 `;
 
@@ -19,7 +21,7 @@ const Inner = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
-  align-items: center;
+  align-items: flex-end;
 
   @media (max-width: ${size.tablet}) {
     grid-template-columns: 1fr;
@@ -27,7 +29,13 @@ const Inner = styled.div`
   }
 `;
 
-const TextCol = styled.div``;
+const TextCol = styled.div`
+  padding-bottom: 5rem;
+
+  @media (max-width: ${size.mobile}) {
+    padding-bottom: 3rem;
+  }
+`;
 
 const Heading = styled.h2`
   font-family: 'Bitter', serif;
@@ -58,20 +66,26 @@ const Body = styled.p`
 `;
 
 const ImageCol = styled.div`
-  border-radius: 1rem;
-  overflow: hidden;
-  aspect-ratio: 3 / 2;
-
-  @media (max-width: ${size.tablet}) {
-    max-width: 540px;
-  }
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-bottom: 2rem;
 `;
 
 const Img = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 0.75rem 0.75rem 0 0;
+  box-shadow: -6px -6px 32px rgba(0, 0, 0, 0.18);
   display: block;
+  transform: rotate(2deg);
+  transform-origin: bottom right;
+
+  @media (max-width: ${size.tablet}) {
+    width: 90%;
+    max-width: 420px;
+  }
 `;
 
 const MissionSection = () => (
@@ -84,7 +98,7 @@ const MissionSection = () => (
         ))}
       </TextCol>
       <ImageCol>
-        <Img src={newspapersImg} alt="Columbia Spectator newspapers" />
+        <Img src={newspaperImg} alt="Columbia Spectator 'We Win!' front page" />
       </ImageCol>
     </Inner>
   </Section>

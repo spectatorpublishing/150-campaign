@@ -63,7 +63,7 @@ const Chevron = styled.span`
 
 const Answer = styled.div`
   overflow: hidden;
-  max-height: ${({ open }) => (open ? '300px' : '0')};
+  max-height: ${({ open }) => (open ? '800px' : '0')};
   transition: max-height 0.3s ease;
 `;
 
@@ -74,6 +74,17 @@ const AnswerText = styled.p`
   color: #444;
   margin: 0 0 1.25rem;
 `;
+
+const emailRegex = /([\w.]+@[\w.]+\.[a-z]{2,})/g;
+
+const renderWithLinks = (text) => {
+  const parts = text.split(emailRegex);
+  return parts.map((part, i) =>
+    emailRegex.test(part)
+      ? <a key={i} href={`mailto:${part}`} style={{ color: '#7ecff4' }}>{part}</a>
+      : part
+  );
+};
 
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -91,7 +102,9 @@ const FAQSection = () => {
               <Chevron open={openIndex === i}>▾</Chevron>
             </Question>
             <Answer open={openIndex === i}>
-              <AnswerText>{item.answer}</AnswerText>
+              {Array.isArray(item.answer)
+                ? item.answer.map((para, j) => <AnswerText key={j}>{renderWithLinks(para)}</AnswerText>)
+                : <AnswerText>{renderWithLinks(item.answer)}</AnswerText>}
             </Answer>
           </Item>
         ))}

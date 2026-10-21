@@ -60,8 +60,7 @@ const Body = styled.p`
 const WhyNowSection = () => (
   <Section id="why-now">
     <TextBox>
-      <Heading>{whyNow.heading}</Heading>
-      {whyNow.paragraphs.map((p, i) => (
+{whyNow.paragraphs.map((p, i) => (
         <Body key={i}><strong>{p.bold}</strong>{p.rest}</Body>
       ))}
     </TextBox>
