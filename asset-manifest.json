@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.ff245a94.css",
-    "main.js": "/static/js/main.afdc19ca.js",
+    "main.js": "/static/js/main.f3341351.js",
     "static/js/453.e65b7d9d.chunk.js": "/static/js/453.e65b7d9d.chunk.js",
     "static/media/1988.png": "/static/media/1988.02fca4e6f153792d0c8a.png",
     "static/media/2004.png": "/static/media/2004.d7879e11b55c6d30859c.png",
@@ -14,7 +14,6 @@
     "static/media/1962.png": "/static/media/1962.6f2ccca84afe9b11fc2e.png",
     "static/media/1933.png": "/static/media/1933.65279ca38827c372863b.png",
     "static/media/newspapers-bg.png": "/static/media/newspapers-bg.48cf10a881fed95fe29c.png",
-    "static/media/ady-barkan.png": "/static/media/ady-barkan.96d38b3e051e791b8936.png",
     "static/media/brochure-cover.png": "/static/media/brochure-cover.1ca545cb3eed3f78cf79.png",
     "static/media/1902.jpeg": "/static/media/1902.d7f4ae56069f29bb5e9e.jpeg",
     "static/media/jillian-headshot.png": "/static/media/jillian-headshot.d8918598a9ea626fe311.png",
@@ -33,17 +32,18 @@
     "static/media/columbia-skyline.jpeg": "/static/media/columbia-skyline.13600f2ffb25923d5bc2.jpeg",
     "static/media/logo_3.png": "/static/media/logo_3.053ce23dd952663a3f1e.png",
     "static/media/speakers.jpeg": "/static/media/speakers.8aff57c5f4b53b1204ab.jpeg",
+    "static/media/ady-barkan.png": "/static/media/ady-barkan.b55a3c32fd441b03e340.png",
     "static/media/JaimeDanies_LowSunset-1.webp": "/static/media/JaimeDanies_LowSunset-1.28bb86121f9cdef8f577.webp",
     "static/media/early-career.jpeg": "/static/media/early-career.f5af318519ca364ec003.jpeg",
     "static/media/nadia-headshot.png": "/static/media/nadia-headshot.fe26aeeaf7da300d35c5.png",
     "static/media/2027.png": "/static/media/2027.f3d6135e0d145deaef5e.png",
     "index.html": "/index.html",
     "main.ff245a94.css.map": "/static/css/main.ff245a94.css.map",
-    "main.afdc19ca.js.map": "/static/js/main.afdc19ca.js.map",
+    "main.f3341351.js.map": "/static/js/main.f3341351.js.map",
     "453.e65b7d9d.chunk.js.map": "/static/js/453.e65b7d9d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ff245a94.css",
-    "static/js/main.afdc19ca.js"
+    "static/js/main.f3341351.js"
   ]
 }
