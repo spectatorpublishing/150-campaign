@@ -195,23 +195,29 @@ export const donorOpportunities = [
 
 export const faq = [
   {
-    question: 'Why now?',
-    answer:
-      'Spectator is turning 150. The milestone is an opportunity to build an institution that lasts another 150 years. We have momentum, community trust, and a clear plan—this is the moment to act.',
+    question: 'Is my donation tax deductible?',
+    answer: 'Yes. Spectator operates as Spectator Publishing Co., a 501c3 nonprofit (EIN 13-1975005), and donations are fully tax-deductible.',
   },
   {
-    question: 'Is my donation tax deductible?',
-    answer:
-      'Yes. Spectator operates as Spectator Publishing Co., a 501c3 nonprofit (EIN 13-1975005), and donations are fully tax-deductible.',
+    question: 'How can I make a leadership gift?',
+    answer: 'Contact giving@columbiaspectator.com to discuss larger gifts with even greater impact.',
   },
   {
     question: 'Can I choose how my donation is used?',
-    answer:
-      'Yes. When you donate, please include your instructions.',
+    answer: 'Yes. When you donate, please include your instructions.',
   },
   {
     question: 'Is Spectator financially independent from Columbia University?',
-    answer:
-      'Yes, Spectator is a 501c3 nonprofit. It has been financially independent from the University since 1962.',
+    answer: 'Yes, Spectator has been financially independent from the university since 1962.',
+  },
+  {
+    question: 'How can I maximize my donation?',
+    answer: [
+      'Gifts of cash—by check, wire transfer, or credit card—are the most effective way to support Spectator, especially with multi-year pledges.',
+      'Giving stock or other securities can be a tax-efficient option. In most cases, you can avoid capital gains tax on an asset that has appreciated and receive a charitable deduction based on the value on the date of the gift.',
+      'Give a Qualified Charitable Distribution. You may be able to direct your IRA\'s Required Minimum Distribution (RMD) to Spectator and reduce your taxable income.',
+      'Matching gift programs are offered by many employers.',
+      'Planned giving—such as a bequest—is an enduring way to honor your legacy. Most gifts of this type would fall outside the scope of this campaign; contact us at giving@columbiaspectator.com to discuss.',
+    ],
   },
 ];

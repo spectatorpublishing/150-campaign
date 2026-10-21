@@ -46,8 +46,8 @@ const FooterLink = styled.a`
 const Copyright = styled.p`
   font-family: 'Open Sans', sans-serif;
   font-size: 0.8rem;
-  color: #666;
-  margin: 0;
+  color: #fff;
+  margin: 0 0 1.5rem;
 `;
 
 const Footer = () => (
@@ -55,13 +55,6 @@ const Footer = () => (
     <LogoLink href="https://www.columbiaspectator.com/" target="_blank" rel="noopener noreferrer">
       <LogoImg src="/spectator-logo.png" alt="Columbia Daily Spectator" />
     </LogoLink>
-    <Links>
-      <FooterLink href="https://www.columbiaspectator.com/" target="_blank" rel="noopener noreferrer">
-        Columbia Spectator
-      </FooterLink>
-      <FooterLink href="#faq">FAQ</FooterLink>
-      <FooterLink href="#mission">Our Mission</FooterLink>
-    </Links>
     <Copyright>© {new Date().getFullYear()} Columbia Daily Spectator. All rights reserved.</Copyright>
   </FooterEl>
 );

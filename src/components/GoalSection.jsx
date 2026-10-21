@@ -53,17 +53,12 @@ const Inner = styled.div`
     transition: opacity 0.75s ease, transform 0.75s ease;
   }
 
-  &.visible > *:nth-child(1) { transition-delay: 0s; }
-  &.visible > *:nth-child(2) { transition-delay: 0.1s; }
-  &.visible > *:nth-child(3) { transition-delay: 0.2s; }
-  &.visible > *:nth-child(4) { transition-delay: 0.3s; }
-  &.visible > *:nth-child(5) { transition-delay: 0.4s; }
-  &.visible > *:nth-child(6) { transition-delay: 0.5s; }
-
   &.visible > * {
     opacity: 1;
     transform: translateY(0);
   }
+
+  ${[...Array(10)].map((_, i) => `&.visible > *:nth-child(${i + 1}) { transition-delay: ${i * 0.08}s; }`).join('\n  ')}
 `;
 
 const SectionLabel = styled.h2`
@@ -76,31 +71,6 @@ const SectionLabel = styled.h2`
   text-decoration-color: #7ecff4;
   text-decoration-thickness: 3px;
   text-underline-offset: 0.2em;
-`;
-
-const BigNumber = styled.h2`
-  font-family: 'Bitter', serif;
-  font-size: clamp(5rem, 15vw, 10rem);
-  font-weight: 700;
-  color: #fff;
-  line-height: 1;
-  margin: 0 0 1.25rem;
-  letter-spacing: -0.02em;
-`;
-
-const HeroTagline = styled.p`
-  font-family: 'Bitter', serif;
-  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.5;
-  margin: 0 0 2.5rem;
-`;
-
-const Divider = styled.hr`
-  border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  margin: 0 0 2rem;
 `;
 
 const GoalTitle = styled.h3`
@@ -117,11 +87,32 @@ const GoalDesc = styled.p`
   font-size: 0.97rem;
   line-height: 1.72;
   color: #fff;
-  margin: 0 0 2rem;
+  margin: 0 0 1.75rem;
+`;
 
-  &:last-of-type {
-    margin-bottom: 0;
-  }
+const SubList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+`;
+
+const SubItem = styled.li`
+  font-family: 'Merriweather', serif;
+  font-size: 0.97rem;
+  line-height: 1.72;
+  color: #fff;
+`;
+
+const SubLabel = styled.span`
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  color: #7ecff4;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-right: 0.4em;
 `;
 
 const LeadershipNote = styled.p`
@@ -174,13 +165,15 @@ const GoalSection = () => {
         <TextBox>
           <Inner ref={ref} className={visible ? 'visible' : ''}>
             <SectionLabel>We're raising $1.5M to:</SectionLabel>
+
             <GoalTitle>1) Secure the Future</GoalTitle>
             <GoalDesc>
-              A major boost to Spectator's endowment—generating income in perpetuity to backstop operations, protect editorial independence, and let Spec plan boldly for decades to come.
+              We will double Spectator's endowment—generating income in perpetuity to backstop operations, protect editorial independence, and let Spec plan boldly for decades to come.
             </GoalDesc>
+
             <GoalTitle>2) Invest in Our People</GoalTitle>
             <GoalDesc>
-              Many talented students cannot afford to spend dozens of unpaid hours per week in the newsroom. Since 2014, we have proudly offered a work-study program that allows every student, regardless of need, to learn journalism at Spectator. This campaign will allow us to grow this program—and offer a new suite of prizes and stipends to attract journalists from every background, reward outstanding reporting, and launch graduates into their first jobs in journalism, without financial stress.
+              Many talented students cannot afford to spend dozens of unpaid hours per week in the newsroom. Since 2014, we have proudly offered a work-study program that allows every student, regardless of need, to learn journalism at Spectator. This campaign will allow us to grow this program—and begin new ones that reward outstanding reporting and launch graduates into their first jobs in journalism.
             </GoalDesc>
           </Inner>
         </TextBox>
@@ -189,9 +182,6 @@ const GoalSection = () => {
       <DonateBar>
         <DonateHeading>Help secure Spectator's next 150 years.</DonateHeading>
         <DonateButton to={DONATE_URL}>Donate Now</DonateButton>
-        <LeadershipNote>
-          Interested in a leadership gift? Contact <a href="mailto:giving@columbiaspectator.com">giving@columbiaspectator.com</a> to learn more about naming opportunities and other details.
-        </LeadershipNote>
       </DonateBar>
     </>
   );
