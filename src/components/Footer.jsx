@@ -3,59 +3,66 @@ import styled from 'styled-components';
 import { size } from '../device';
 
 const FooterEl = styled.footer`
-  background-color: #1c1c1c;
-  color: white;
-  padding: 3rem 2rem;
-  text-align: center;
+  background-color: #000;
+  color: #fff;
+  padding: 3.5rem 4rem;
 
   @media (max-width: ${size.mobile}) {
-    padding: 2rem 1.5rem;
+    padding: 2.5rem 1.75rem;
   }
 `;
 
-const LogoLink = styled.a`
-  display: inline-block;
-  margin-bottom: 1.25rem;
+const LogoRow = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
 `;
 
 const LogoImg = styled.img`
-  height: 20px;
+  height: 22px;
   width: auto;
   filter: brightness(0) invert(1);
 `;
 
-const Links = styled.div`
-  display: flex;
-  justify-content: center;
+const Columns = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-`;
 
-const FooterLink = styled.a`
-  color: #aaa;
-  text-decoration: none;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 0.85rem;
-
-  &:hover {
-    color: white;
+  @media (max-width: ${size.tablet}) {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
   }
 `;
 
-const Copyright = styled.p`
+const Col = styled.div`
   font-family: 'Open Sans', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  line-height: 1.7;
   color: #fff;
-  margin: 0 0 1.5rem;
 `;
 
 const Footer = () => (
   <FooterEl>
-    <LogoLink href="https://www.columbiaspectator.com/" target="_blank" rel="noopener noreferrer">
+    <LogoRow>
       <LogoImg src="/spectator-logo.png" alt="Columbia Daily Spectator" />
-    </LogoLink>
-    <Copyright>© {new Date().getFullYear()} Columbia Daily Spectator. All rights reserved.</Copyright>
+    </LogoRow>
+    <Columns>
+      <Col>
+        <strong>Contact:</strong><br />
+        150 Campaign Committee<br />
+        <a href="mailto:giving@columbiaspectator.com" style={{ color: '#fff', fontWeight: '700', textDecoration: 'none' }}>giving@columbiaspectator.com</a>
+      </Col>
+      <Col>
+        Spectator Publishing Company<br />
+        490 Riverside Dr.<br />
+        Rm. 414<br />
+        New York, NY, 10027
+      </Col>
+      <Col>
+        Spectator Publishing Company is a 501(c)(3) nonprofit organization. All contributions are tax-deductible to the fullest extent allowed by law. Our EIN is 13-1975005.
+      </Col>
+    </Columns>
   </FooterEl>
 );
 

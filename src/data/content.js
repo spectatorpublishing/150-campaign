@@ -158,7 +158,7 @@ export const timeline = [
   { year: '1968', event: 'Hamilton Hall', image: '1968', imageOnly: true },
   { year: '1983', event: 'Co-ed at last', image: '1983', imageOnly: true },
   { year: '1988', event: 'We Win!', image: '1988', imageOnly: true },
-  { year: '1998', event: 'columbiaspectator.com goes online', image: '1998', bgSize: 'contain', bgColor: '#d0cfc9' },
+  { year: '1998', event: 'columbiaspectator.com goes online', image: '1998', bgSize: 'contain', bgColor: '#d0cfc9', bgPositionMobile: 'center' },
   { year: '2004', event: 'A new format: broadsheet and color. The Eye magazine debuts.', image: '2004' },
   { year: '2014', event: 'Shift to digital-first publishing', image: '2014' },
   { year: '2024', event: 'Encampments spread across the nation', image: '2024', imageOnly: true },
@@ -196,7 +196,7 @@ export const donorOpportunities = [
 export const faq = [
   {
     question: 'Is my donation tax deductible?',
-    answer: 'Yes. Spectator operates as Spectator Publishing Co., a 501c3 nonprofit (EIN 13-1975005), and donations are fully tax-deductible.',
+    answer: 'Yes. Spectator Publishing Company is a 501(c)(3) nonprofit organization. All contributions are tax-deductible to the fullest extent allowed by law. Our EIN is 13-1975005.',
   },
   {
     question: 'How can I make a leadership gift?',

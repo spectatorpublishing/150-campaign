@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { size } from '../device';
 import { mission } from '../data/content';
 import newspaperImg from '../assets/page-imgs/newspaper-we-win.png';
@@ -73,14 +73,19 @@ const ImageCol = styled.div`
   margin-bottom: 2rem;
 `;
 
+const riseIn = keyframes`
+  from { transform: rotate(2deg) translateY(18px); opacity: 0.4; }
+  to   { transform: rotate(2deg) translateY(0px);  opacity: 1; }
+`;
+
 const Img = styled.img`
   width: 80%;
   max-width: 400px;
   border-radius: 0.75rem 0.75rem 0 0;
   box-shadow: -6px -6px 32px rgba(0, 0, 0, 0.18);
   display: block;
-  transform: rotate(2deg);
   transform-origin: bottom right;
+  animation: ${riseIn} 0.9s ease-out both;
 
   @media (max-width: ${size.tablet}) {
     width: 90%;

@@ -138,7 +138,7 @@ const Navigation = () => {
 
   return (
     <NavBar style={{ position: 'sticky', flexWrap: 'wrap' }}>
-      <LogoLink href="https://www.columbiaspectator.com/" target="_blank" rel="noopener noreferrer">
+      <LogoLink href="https://150.columbiaspectator.com" target="_blank" rel="noopener noreferrer">
         <LogoImg src="/spectator-logo.png" alt="Columbia Daily Spectator" />
       </LogoLink>
 

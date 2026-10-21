@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect, useRef } from 'react';
+import styled, { keyframes, css } from 'styled-components';
 import { timeline } from '../data/content';
 
 import img1877 from '../assets/timeline-imgs/1877.png';
@@ -75,12 +75,21 @@ const PanelsWrapper = styled.div`
   display: flex;
 `;
 
+const slideFromRight = keyframes`
+  from { transform: translateX(40px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+`;
+
+const slideFromLeft = keyframes`
+  from { transform: translateX(-40px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+`;
+
 const Panel = styled.div`
   flex: 1;
   height: 100%;
   position: relative;
-  opacity: ${({ $active }) => $active ? 1 : 0};
-  transition: opacity 0.5s ease;
+  animation: ${({ $direction }) => css`${$direction === 'prev' ? slideFromLeft : slideFromRight} 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) both`};
 `;
 
 const PanelImage = styled.div`
@@ -91,6 +100,10 @@ const PanelImage = styled.div`
   background-size: ${({ $bgSize }) => $bgSize || 'cover'};
   background-position: top center;
   background-repeat: no-repeat;
+
+  @media (max-width: 600px) {
+    background-position: ${({ $bgPositionMobile }) => $bgPositionMobile || 'top center'};
+  }
 `;
 
 const ImageOverlay = styled.div`
@@ -156,21 +169,26 @@ const ArrowButton = styled.button`
   top: 45%;
   transform: translateY(-50%);
   ${({ $side }) => $side === 'left' ? 'left: 1rem;' : 'right: 1rem;'}
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  background: none;
+  border: none;
+  padding: 2rem 0.5rem;
   cursor: pointer;
-  color: ${({ disabled }) => disabled ? 'rgba(255,255,255,0.15)' : '#fff'};
+  color: ${({ disabled }) => disabled ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.7)'};
+  font-family: 'Bitter', serif;
+  font-size: 1.5rem;
+  line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s;
+  transition: color 0.2s;
   z-index: 10;
 
   &:hover:not(:disabled) {
-    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+
+  @media (max-width: 600px) {
+    display: none;
   }
 `;
 
@@ -197,11 +215,24 @@ const Dot = styled.button`
 
 const TimelineCarousel = () => {
   const [page, setPage] = useState(0);
+  const [direction, setDirection] = useState('next');
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 600);
   const touchStartX = useRef(null);
 
-  const numPages = Math.ceil(timeline.length / PER_PAGE);
-  const prev = () => setPage(p => Math.max(0, p - 1));
-  const next = () => setPage(p => Math.min(numPages - 1, p + 1));
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 600);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  const perPage = isMobile ? 1 : PER_PAGE;
+  const numPages = Math.ceil(timeline.length / perPage);
+  const prev = () => { setDirection('prev'); setPage(p => Math.max(0, p - 1)); };
+  const next = () => { setDirection('next'); setPage(p => Math.min(numPages - 1, p + 1)); };
+
+  useEffect(() => {
+    setPage(p => Math.min(p, numPages - 1));
+  }, [numPages]);
 
   const onTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
   const onTouchEnd = (e) => {
@@ -212,7 +243,7 @@ const TimelineCarousel = () => {
     touchStartX.current = null;
   };
 
-  const visibleItems = timeline.slice(page * PER_PAGE, page * PER_PAGE + PER_PAGE);
+  const visibleItems = timeline.slice(page * perPage, page * perPage + perPage);
 
   return (
     <Wrapper id="timeline">
@@ -222,8 +253,8 @@ const TimelineCarousel = () => {
     <Section onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
       <PanelsWrapper>
         {visibleItems.map((item, i) => (
-          <Panel key={`${page}-${i}`} $active>
-            <PanelImage $img={item.image ? IMAGES[item.image] : null} $bgSize={item.bgSize} $bgColor={item.bgColor}>
+          <Panel key={`${page}-${i}`} $direction={direction}>
+            <PanelImage $img={item.image ? IMAGES[item.image] : null} $bgSize={item.bgSize} $bgColor={item.bgColor} $bgPositionMobile={item.bgPositionMobile}>
               <ImageOverlay />
               {i === 0 && <SideVignette $side="left" />}
               {i === visibleItems.length - 1 && <SideVignette $side="right" />}
@@ -236,17 +267,8 @@ const TimelineCarousel = () => {
         ))}
       </PanelsWrapper>
 
-      <ArrowButton $side="left" onClick={prev} disabled={page === 0} aria-label="Previous">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="15 18 9 12 15 6" />
-        </svg>
-      </ArrowButton>
-
-      <ArrowButton $side="right" onClick={next} disabled={page === numPages - 1} aria-label="Next">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="9 18 15 12 9 6" />
-        </svg>
-      </ArrowButton>
+      <ArrowButton $side="left" onClick={prev} disabled={page === 0} aria-label="Previous">&lt;</ArrowButton>
+      <ArrowButton $side="right" onClick={next} disabled={page === numPages - 1} aria-label="Next">&gt;</ArrowButton>
 
       <Dots>
         {Array.from({ length: numPages }).map((_, i) => (
