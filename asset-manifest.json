@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.ff245a94.css",
-    "main.js": "/static/js/main.daa732e5.js",
+    "main.js": "/static/js/main.04d7ffef.js",
     "static/js/453.e65b7d9d.chunk.js": "/static/js/453.e65b7d9d.chunk.js",
     "static/media/1988.png": "/static/media/1988.02fca4e6f153792d0c8a.png",
     "static/media/2004.png": "/static/media/2004.d7879e11b55c6d30859c.png",
@@ -12,21 +12,23 @@
     "static/media/1933.png": "/static/media/1933.16ae1c80d364aa755213.png",
     "static/media/logo_2.png": "/static/media/logo_2.e55c9582dd050ffea538.png",
     "static/media/logo_6.png": "/static/media/logo_6.8495b6cd81f346244940.png",
+    "static/media/spec-logos-bg.png": "/static/media/spec-logos-bg.18c7d6252c270abd59dd.png",
     "static/media/logo_5.png": "/static/media/logo_5.3a8dd39eb4e6def01ed8.png",
     "static/media/logo_8.png": "/static/media/logo_8.703119940079cc63229f.png",
     "static/media/logo_4.png": "/static/media/logo_4.e62afb9fc527b1b1d9e8.png",
     "static/media/logo_7.png": "/static/media/logo_7.ee4341c296a81d1bac8f.png",
     "static/media/logo_1.png": "/static/media/logo_1.ffb3d3ea85285971992e.png",
+    "static/media/staff-group.jpeg": "/static/media/staff-group.fadfa3a6017187638066.jpeg",
+    "static/media/columbia-skyline.jpeg": "/static/media/columbia-skyline.13600f2ffb25923d5bc2.jpeg",
     "static/media/logo_3.png": "/static/media/logo_3.053ce23dd952663a3f1e.png",
     "static/media/JaimeDanies_LowSunset-1.webp": "/static/media/JaimeDanies_LowSunset-1.28bb86121f9cdef8f577.webp",
-    "static/media/newspapers.webp": "/static/media/newspapers.518285617629e9eaef43.webp",
     "index.html": "/index.html",
     "main.ff245a94.css.map": "/static/css/main.ff245a94.css.map",
-    "main.daa732e5.js.map": "/static/js/main.daa732e5.js.map",
+    "main.04d7ffef.js.map": "/static/js/main.04d7ffef.js.map",
     "453.e65b7d9d.chunk.js.map": "/static/js/453.e65b7d9d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ff245a94.css",
-    "static/js/main.daa732e5.js"
+    "static/js/main.04d7ffef.js"
   ]
 }
